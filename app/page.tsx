@@ -14,27 +14,6 @@ import { HomeLayout } from 'fumadocs-ui/home-layout'
 
 import { baseOptions } from './layout.config'
 
-function Header() {
-	return (
-		<header className="px-6 lg:px-8 h-16 flex items-center bg-black text-white">
-			<Link className="flex items-center justify-center" href="#">
-				<ServerIcon className="h-6 w-6" />
-				<span className="ml-2 text-lg font-semibold">闲时显卡租赁</span>
-			</Link>
-			<nav className="ml-auto flex gap-6">
-				<Link className="text-sm font-medium hover:text-gray-300 transition-colors" href="#features">
-					特性
-				</Link>
-				<Link className="text-sm font-medium hover:text-gray-300 transition-colors" href="#pricing">
-					定价
-				</Link>
-				<Link className="text-sm font-medium hover:text-gray-300 transition-colors" href="#contact">
-					联系我们
-				</Link>
-			</nav>
-		</header>
-	)
-}
 
 function Hero() {
 	return (
@@ -94,7 +73,7 @@ function Features() {
 	)
 }
 
-function FeatureCard({ icon, title, description }) {
+function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
 	return (
 		<div className="group flex flex-col items-center space-y-2 border border-gray-700 p-6 rounded-lg bg-gray-800/50 backdrop-blur-sm hover:bg-gray-800/80 transition-all duration-300 hover:scale-105">
 			<div className="p-3 bg-blue-500/10 rounded-full mb-4 group-hover:bg-blue-500/20 transition-colors duration-300">
@@ -135,7 +114,7 @@ function WhyChooseUs() {
 	)
 }
 
-function ReasonCard({ icon, title, description }) {
+function ReasonCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
 	return (
 		<div className="flex flex-col items-center space-y-2 p-6 py-16 bg-gray-700 rounded-lg shadow-md">
 			{icon}
@@ -233,7 +212,8 @@ export default function LandingPage() {
 	)
 }
 
-function Link({ href, children, ...props }) {
+function Link({ href, children, ...props }: { href: string; children: React.ReactNode }) {
+
 	return (
 		<a href={href} {...props}>
 			{children}
