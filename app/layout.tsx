@@ -12,6 +12,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 		<html lang="en" className={inter.className} suppressHydrationWarning>
 			<body className="min-h-screen bg-background">
 				<RootProvider
+					search={{ enabled: false }}
 					theme={{
 						forcedTheme: 'dark',
 					}}
