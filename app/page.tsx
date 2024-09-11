@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -14,6 +13,12 @@ import {
 import { HomeLayout } from 'fumadocs-ui/home-layout'
 import { baseOptions } from './layout.config'
 import CTAButton from '@/components/CTAButton'
+
+import { Metadata } from 'next'
+export const metadata = {
+	title: '灵动算力租赁',
+	description: '',
+} satisfies Metadata
 
 function Hero() {
 	return (
@@ -266,7 +271,7 @@ function Contact() {
 function Footer() {
 	return (
 		<footer className="flex flex-col gap-4 sm:flex-row py-8 w-full shrink-0 items-center px-6 md:px-8 border-t border-gray-800 bg-gray-950 text-white">
-			<p className="text-sm text-gray-400">© 2024 闲时显卡租赁. 保留所有权利。</p>
+			<p className="text-sm text-gray-400">© 2024 灵动算力租赁. 保留所有权利。</p>
 			{/* <nav className="sm:ml-auto flex gap-6">
 				<Link className="text-sm text-gray-400 hover:text-white transition-colors" href="#">
 					条款

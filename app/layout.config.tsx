@@ -5,7 +5,7 @@ import { pageTree } from '@/app/source';
 // shared configuration
 export const baseOptions: HomeLayoutProps = {
   nav: {
-    title: '闲时显卡租赁',
+    title: '灵动算力租赁',
   },
   // links: [
   //   {
