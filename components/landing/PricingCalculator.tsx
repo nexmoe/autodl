@@ -52,7 +52,7 @@ export default function PricingCalculator() {
 			</div>
 			<div>
 				<label htmlFor="hours" className="block text-sm font-medium text-gray-400 mb-2">
-					估算使用时长（小时）
+					估算使用时长（小时，一个月 720 小时）
 				</label>
 				<Input
 					type="number"
