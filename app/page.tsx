@@ -16,14 +16,13 @@ import {
 import { HomeLayout } from 'fumadocs-ui/home-layout'
 import { baseOptions } from './layout.config'
 import CTAButton from '@/components/CTAButton'
-import PricingCalculator from './PricingCalculator'
+import PricingCalculator from '@/components/landing/PricingCalculator'
 
 import { Metadata } from 'next'
 export const metadata = {
 	title: '灵动算力租赁',
 	description: '',
 } satisfies Metadata
-
 
 function PainPoints() {
 	return (
@@ -34,28 +33,28 @@ function PainPoints() {
 				</h2>
 				<div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-2">
 					<PainPointCard
-						icon={<BatteryChargingIcon className="h-12 w-12 text-red-400" />}
-						title="硬件资源不足"
-						problem="高性能GPU价格昂贵，难以负担"
-						solution="提供按需租用的高性能GPU，无需大额投资"
-					/>
-					<PainPointCard
 						icon={<DollarSignIcon className="h-12 w-12 text-red-400" />}
 						title="成本压力大"
 						problem="长期租用或购买设备成本高昂"
 						solution="灵活的短期租赁方案，显著降低研究成本"
 					/>
 					<PainPointCard
-						icon={<ClockIcon className="h-12 w-12 text-red-400" />}
-						title="项目进度受限"
-						problem="硬件资源不足导致项目进度缓慢"
-						solution="即时访问高性能计算资源，加速项目进展"
-					/>
-					<PainPointCard
 						icon={<SearchIcon className="h-12 w-12 text-red-400" />}
 						title="短期节点难寻"
 						problem="短期高性能节点供应不足，难以满足临时需求"
 						solution="提供丰富的短期高性能节点，满足临时计算需求"
+					/>
+					<PainPointCard
+						icon={<BatteryChargingIcon className="h-12 w-12 text-red-400" />}
+						title="硬件资源不足"
+						problem="高性能GPU价格昂贵，难以负担"
+						solution="提供按需租用的高性能GPU，无需大额投资"
+					/>
+					<PainPointCard
+						icon={<ClockIcon className="h-12 w-12 text-red-400" />}
+						title="项目进度受限"
+						problem="硬件资源不足导致项目进度缓慢"
+						solution="即时访问高性能计算资源，加速项目进展"
 					/>
 				</div>
 			</div>
@@ -135,7 +134,6 @@ function FeatureCard({
 	)
 }
 
-
 function Pricing() {
 	return (
 		<section
@@ -166,7 +164,10 @@ function Pricing() {
 
 function Contact() {
 	return (
-		<section id="waitlist" className="w-full py-32 pb-42 md:py-40 md:pb-56 lg:py-48 lg:pb-64 bg-gradient-to-b from-gray-950 to-gray-900 text-white">
+		<section
+			id="waitlist"
+			className="w-full py-32 pb-42 md:py-40 md:pb-56 lg:py-48 lg:pb-64 bg-gradient-to-b from-gray-950 to-gray-900 text-white"
+		>
 			<div className="container px-6 md:px-8 max-w-4xl mx-auto">
 				<div className="flex flex-col items-center space-y-8 text-center">
 					<h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
