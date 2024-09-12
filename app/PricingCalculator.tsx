@@ -1,35 +1,30 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-
-const gpuData = [
-    { name: 'NVIDIA RTX 4090', price: 1.98, marketPrice: 3.30 },
-	{ name: 'NVIDIA RTX 3080', price: 0.88, marketPrice: 1.47 },
-	{ name: 'NVIDIA RTX 3090', price: 1.32, marketPrice: 2.20 },
-]
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Input } from '@/components/ui/input'
+import gpuData from '@/components/landing/gpudata'
 
 export default function PricingCalculator() {
 	const [selectedGPU, setSelectedGPU] = useState(gpuData[0])
-	const [gpuCount, setGPUCount] = useState(10)
+	const [gpuCount, setGPUCount] = useState(20)
 	const [hours, setHours] = useState(1440)
 	const [savings, setSavings] = useState(0)
 
 	useEffect(() => {
-		const marketTotal = hours * selectedGPU.marketPrice * gpuCount
-		const ourTotal = hours * selectedGPU.price * gpuCount
+		const marketTotal = hours * selectedGPU.price * gpuCount
+		const ourTotal = ((hours * selectedGPU.price * (100 - selectedGPU.discount)) / 100) * gpuCount
 		setSavings(marketTotal - ourTotal)
 	}, [selectedGPU, gpuCount, hours])
 
 	return (
 		<div className="w-full max-w-md space-y-6">
 			<div>
-				<label className="block text-sm font-medium text-gray-400 mb-2">
-					选择显卡型号
-				</label>
+				<label className="block text-sm font-medium text-gray-400 mb-2">选择显卡型号</label>
 				<Select
-					onValueChange={(value) => setSelectedGPU(gpuData.find(gpu => gpu.name === value) || gpuData[0])}
+					onValueChange={(value) =>
+						setSelectedGPU(gpuData.find((gpu) => gpu.name === value) || gpuData[0])
+					}
 				>
 					<SelectTrigger className="w-full">
 						<SelectValue placeholder="选择显卡型号" />
@@ -51,7 +46,7 @@ export default function PricingCalculator() {
 					type="number"
 					id="gpuCount"
 					value={gpuCount}
-					onChange={(e) => setGPUCount(Math.max(10, parseInt(e.target.value) || 10))}
+					onChange={(e) => setGPUCount(Math.max(1, parseInt(e.target.value) || 20))}
 					className="w-full"
 				/>
 			</div>
@@ -68,14 +63,13 @@ export default function PricingCalculator() {
 				/>
 			</div>
 			<div className="text-center">
-				<p className="text-2xl font-bold text-green-400">
-					预计节省: ¥{savings.toFixed(2)}
+				<p className="text-3xl font-bold text-green-400">预计节省: ¥{savings.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+				<p className="text-gray-400 mt-2">
+					相比市场平均价格 ¥{(hours * selectedGPU.price * gpuCount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
 				</p>
 				<p className="text-gray-400 mt-2">
-					相比市场平均价格 (¥{(hours * selectedGPU.marketPrice * gpuCount).toFixed(2)})
-				</p>
-				<p className="text-gray-400 mt-2">
-					我们的价格: ¥{(hours * selectedGPU.price * gpuCount).toFixed(2)}
+					我们的价格: ¥
+					{(((hours * selectedGPU.price * (100 - selectedGPU.discount)) / 100) * gpuCount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
 				</p>
 			</div>
 		</div>
