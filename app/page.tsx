@@ -9,6 +9,8 @@ import {
 	ServerIcon,
 	ShieldIcon,
 	HeadphonesIcon,
+	BatteryChargingIcon,
+	ClockIcon,
 } from 'lucide-react'
 import { HomeLayout } from 'fumadocs-ui/home-layout'
 import { baseOptions } from './layout.config'
@@ -26,8 +28,6 @@ function Hero() {
 			<div className="container px-6 md:px-8 max-w-5xl mx-auto relative z-10">
 				<div className="flex flex-col items-center space-y-8 text-center">
 					<h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient-x">
-						高效利用闲置资源
-						<br />
 						灵活租用计算能力
 					</h1>
 					<p className="mx-auto max-w-2xl text-xl md:text-2xl text-gray-400 leading-relaxed">
@@ -35,7 +35,6 @@ function Hero() {
 					</p>
 					<div className="space-x-6 mt-12">
 						<CTAButton />
-						{/* <Button variant="outline">了解更多</Button> */}
 					</div>
 				</div>
 			</div>
@@ -110,7 +109,6 @@ function GPUCards() {
 											{gpu.cores}
 										</p>
 									</div>
-									{/* <Button className="w-full">立即租用</Button> */}
 								</div>
 							</CardContent>
 						</Card>
@@ -118,6 +116,61 @@ function GPUCards() {
 				</div>
 			</div>
 		</section>
+	)
+}
+
+function PainPoints() {
+	return (
+		<section className="w-full py-24 md:py-32 lg:py-40 bg-gray-950 text-white">
+			<div className="container px-6 md:px-8 max-w-6xl mx-auto">
+				<h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-center mb-20">
+					解决您的痛点
+				</h2>
+				<div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+					<PainPointCard
+						icon={<BatteryChargingIcon className="h-12 w-12 text-red-400" />}
+						title="硬件资源不足"
+						problem="高性能GPU价格昂贵，难以负担"
+						solution="提供按需租用的高性能GPU，无需大额投资"
+					/>
+					<PainPointCard
+						icon={<DollarSignIcon className="h-12 w-12 text-red-400" />}
+						title="成本压力大"
+						problem="长期租用或购买设备成本高昂"
+						solution="灵活的短期租赁方案，显著降低研究成本"
+					/>
+					<PainPointCard
+						icon={<ClockIcon className="h-12 w-12 text-red-400" />}
+						title="项目进度受限"
+						problem="硬件资源不足导致项目进度缓慢"
+						solution="即时访问高性能计算资源，加速项目进展"
+					/>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+function PainPointCard({
+	icon,
+	title,
+	problem,
+	solution,
+}: {
+	icon: React.ReactNode
+	title: string
+	problem: string
+	solution: string
+}) {
+	return (
+		<div className="flex flex-col items-center space-y-4 p-6 bg-gray-900 rounded-lg shadow-md">
+			<div className="p-3 bg-red-500/10 rounded-full mb-4">
+				{icon}
+			</div>
+			<h3 className="text-xl font-bold text-center">{title}</h3>
+			<p className="text-red-400 text-center">{problem}</p>
+			<p className="text-green-400 text-center">{solution}</p>
+		</div>
 	)
 }
 
@@ -129,11 +182,10 @@ function Features() {
 					我们的优势
 				</h2>
 				<div className="grid gap-16 sm:grid-cols-2 md:grid-cols-3">
-					{/* 使用新的 FeatureCard 组件 */}
 					<FeatureCard
 						icon={<CloudIcon className="h-12 w-12 text-blue-400" />}
-						title="资源优化"
-						description="充分利用闲置 10-30 天的高性能 GPU，提高资源利用率"
+						title="高性能计算"
+						description="提供高性能 GPU，满足各种计算需求"
 					/>
 					<FeatureCard
 						icon={<CpuIcon className="h-12 w-12 text-blue-400" />}
@@ -170,35 +222,6 @@ function FeatureCard({
 			</h3>
 			<p className="text-gray-300 text-center">{description}</p>
 		</div>
-	)
-}
-
-function WhyChooseUs() {
-	return (
-		<section className="w-full py-24 md:py-32 lg:py-40 bg-gray-900 text-white">
-			<div className="container px-6 md:px-8 max-w-6xl mx-auto">
-				<h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-center mb-20">
-					为什么选择我们？
-				</h2>
-				<div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-					<ReasonCard
-						icon={<ServerIcon className="h-12 w-12 text-primary" />}
-						title="高性能设备"
-						description="提供最新的GPU和CPU设备，满足各种计算需求"
-					/>
-					<ReasonCard
-						icon={<ShieldIcon className="h-12 w-12 text-primary" />}
-						title="安全可靠"
-						description="采用先进的安全措施，保护您的数据和隐私"
-					/>
-					<ReasonCard
-						icon={<HeadphonesIcon className="h-12 w-12 text-primary" />}
-						title="24/7技术支持"
-						description="专业团队全天候为您提供技术支持和解答"
-					/>
-				</div>
-			</div>
-		</section>
 	)
 }
 
@@ -272,14 +295,6 @@ function Footer() {
 	return (
 		<footer className="flex flex-col gap-4 sm:flex-row py-8 w-full shrink-0 items-center px-6 md:px-8 border-t border-gray-800 bg-gray-950 text-white">
 			<p className="text-sm text-gray-400">© 2024 灵动算力租赁. 保留所有权利。</p>
-			{/* <nav className="sm:ml-auto flex gap-6">
-				<Link className="text-sm text-gray-400 hover:text-white transition-colors" href="#">
-					条款
-				</Link>
-				<Link className="text-sm text-gray-400 hover:text-white transition-colors" href="#">
-					隐私政策
-				</Link>
-			</nav> */}
 		</footer>
 	)
 }
@@ -291,8 +306,8 @@ export default function LandingPage() {
 				<main className="flex-1">
 					<Hero />
 					<GPUCards />
+					<PainPoints />
 					<Features />
-					<WhyChooseUs />
 					<Pricing />
 					<Contact />
 				</main>
