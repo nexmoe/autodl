@@ -14,7 +14,7 @@ export default function () {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button>
+				<Button id="join-waitlist">
 					加入等待列表
 					<ArrowRightIcon className="ml-2 h-5 w-5" />
 				</Button>
